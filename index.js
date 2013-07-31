@@ -13,16 +13,23 @@ var spawn = require('child_process').spawn
  * @param {String} str
  * @param {String} lang
  * @param {Function} fn
+ * @param {Object} options - optional
  * @api public
  */
 
-module.exports = function(str, lang, fn){
+module.exports = function(str, lang, fn, options){
   var args = ['-l', lang, '-f', 'html', '-O', 'encoding=utf8,linenos=true'];
+  for (var key in options) {
+    args[5] += ',' + key + '=' + options[key];
+  }
   var buf = '';
 
   if ('function' == typeof lang) {
     fn = lang;
     args = ['-g', '-f', 'html', '-O', 'encoding=utf8,linenos=true'];
+    for (var key in options) {
+      args[4] += ',' + key + '=' + options[key];
+    }
   }
 
   debug('highlight %s', lang);

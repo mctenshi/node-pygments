@@ -16,7 +16,7 @@ var highlight = require('pygments');
 
 highlight(str, 'js', function(err, html){
 
-})
+}, options)
 ```
 
   Guessing:
@@ -26,8 +26,10 @@ var highlight = require('pygments');
 
 highlight(str, function(err, html){
 
-})
+}, options)
 ```
+
+  To use options, see [pygments options](http://pygments.org/docs/quickstart/#options)
 
 ## License
 
