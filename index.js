@@ -18,7 +18,9 @@ var spawn = require('child_process').spawn
  */
 
 module.exports = function(str, lang, fn, options){
-  var args = ['-l', lang, '-f', 'html', '-O', 'encoding=utf8,linenos=true'];
+  var args = ['-l', lang, '-f', 'html', '-O', 'encoding=utf8'];
+  if (!options) options = {};
+  if (!options.linenos) options = true;
   for (var key in options) {
     args[5] += ',' + key + '=' + options[key];
   }
@@ -26,7 +28,7 @@ module.exports = function(str, lang, fn, options){
 
   if ('function' == typeof lang) {
     fn = lang;
-    args = ['-g', '-f', 'html', '-O', 'encoding=utf8,linenos=true'];
+    args = ['-g', '-f', 'html', '-O', 'encoding=utf8'];
     for (var key in options) {
       args[4] += ',' + key + '=' + options[key];
     }
